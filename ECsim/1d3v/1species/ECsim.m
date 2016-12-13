@@ -471,13 +471,3 @@ subplot(2,3,6)
 plot(1:it,histMomentum/Np./mean(abs(qp'.*up)))
 axis tight
   
-
-spettrale(spettroEx,dt,dx);
-spettrale(spettroEy,dt,dx);
-spettrale(spettroEz,dt,dx);
-spettrale(spettroBy,dt,dx);
-spettrale(spettroBz,dt,dx);
-
-figure
-plot(spettroBz(end/2,:),spettroBy(end/2,:))
-save ECIM histEnergy histEnergyE histEnergyB histEnergyK histFmode xp up vp wp time_elapsed;
