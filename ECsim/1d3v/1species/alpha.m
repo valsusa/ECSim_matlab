@@ -1,3 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Matlab implementing the ECsim method descirbed in:
+% Lapenta G, Exactly Energy Conserving Implicit Moment Particle in Cell Formulation
+% https://arxiv.org/abs/1602.06326
+% Written by G. Lapenta
+% First implementation, December, 2015
+% License:  GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007
+% Copyright: KU Leuven
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Service function to compute the tesor rotation due to B
+
 function alpha = alpha(beta,Bx,By,Bz )
 %B=[Bx By Bz];
 %I=diag([1 1 1]);
