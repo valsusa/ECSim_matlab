@@ -14,7 +14,7 @@ clear all
 graphics=1
 
 IMM=0; ninner=3;
-explicit = 0 %it does not work
+
 groot=1;
 
 Nx=128;
@@ -157,20 +157,7 @@ for ip=1:Np
     alphap(ip,1:3,1:3)=alpha(qom*dt/2,Bxp(ip),Byp(ip),Bzp(ip));
 end
 
-if(explicit) 
-    Jx0=zeros(Nx,1);
-    Jx0(ix)=Jx0(ix)+frac1.*qp'.*up;
-    Jx0(ix2)=Jx0(ix2)+(1-frac1).*qp'.*up; 
-    Jy0=zeros(Nx,1);
-    Jy0(ix)=Jy0(ix)+frac1.*qp'.*vp;
-    Jy0(ix2)=Jy0(ix2)+(1-frac1).*qp'.*vp; 
-    Jz0=zeros(Nx,1);
-    Jz0(ix)=Jz0(ix)+frac1.*qp'.*wp;
-    Jz0(ix2)=Jz0(ix2)+(1-frac1).*qp'.*wp; 
-    Jx0=Jx0./dx;
-    Jy0=Jy0./dx;
-    Jz0=Jz0./dx;
-else    
+    
 Jx0=zeros(Nx,1);
 for ip=1:Np
     uphat=up(ip)*alphap(ip,1,1)+vp(ip)*alphap(ip,1,2)+wp(ip)*alphap(ip,1,3);
@@ -194,7 +181,7 @@ for ip=1:Np
     Jz0(ix2(ip))=Jz0(ix2(ip))+(1-frac1(ip))*qp(ip)*uphat;   
 end
 Jz0=Jz0./dx;
-end 
+
 
 % Jx0=smooth(Jx0);
 % Jy0=smooth(Jy0);
@@ -219,9 +206,7 @@ time_matrix_in  = clock();
 %[sum(qp'.*up) sum(J0*dx)]
 M=zeros(Nx,Nx,3,3);
 
-if(explicit)
-    %nothing
-else    
+    
 for i=1:3
     for j=1:3
 for ip=1:Np
@@ -234,11 +219,11 @@ for ip=1:Np
 end   
 M(:,:,i,j)=M(:,:,i,j)+M(:,:,i,j)';
 if(IMM) 
-    M(:,:,i,j)=diag(sum(M(:,:,i,j))); %multiplied for 0 is explicit
+    M(:,:,i,j)=diag(sum(M(:,:,i,j)));
 end    
     end
 end
-end
+
 
 time_matrix_out = clock();
 time_matrix=time_matrix + etime(time_matrix_out,time_matrix_in);
